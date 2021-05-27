@@ -1,21 +1,29 @@
 <?php
+    require_once("conn.php");
 
   //start session here
-
-  if (isset($_POST["submit"])){
-    $choice = $_POST["choice"];
-
-    //set the week number based upon the users choice
-    if ($choice == "server"){
-      $today = date("Y-m-d");   //get the server date in the correct format
-      //query the db here for the week number based on the server date
-
-    }
-    else {
-      $week = $_POST["weekNum"];
-    }
-
-      //set up a session variable here to identify the week
+  $error = 1;
+  if (isset($_POST["choice"])){
+      $choice = $_POST["choice"];
+      
+      $today = ($choice == "server" || $_POST["date"] == "") ? date("Y-m-d") : $_POST["date"];   //get the server date in the correct format
+      $today = $dbConn->escape_string($today);
+      
+      $sql = "SELECT weekID FROM weeks WHERE startDate <= ? AND endDate >= ?;";
+      $statement = $dbConn->prepare($sql) or die ('Problem preparing: ' . $dbConn->error);
+      $statement->bind_param('ss', $today, $today);
+      $statement->execute();
+      
+      $results = $statement->get_result();
+      if(mysqli_num_rows($results)==0) $error = 2;
+      else {
+          $error = 0;
+          $row = $results->fetch_assoc();
+          $id = $row["weekID"];
+          
+          //set up a session variable here to identify the week
+      }
+      
   }
 ?>
 
@@ -29,9 +37,9 @@
     <script>
       function changeSelectionList(){
           if (document.getElementById("weekForm").choice.value == "server")
-            document.getElementById("weekNum").disabled = true;
+            document.getElementById("date").disabled = true;
           else
-            document.getElementById("weekNum").disabled = false;
+            document.getElementById("date").disabled = false;
       }
     </script>
 
@@ -43,7 +51,13 @@
 
     <form id="weekForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
       <p>Do you want to use the Server Date or User Input for the current week?</p>
-
+      
+      <?php if($error == 2):?>
+        <p>Invalid date - .</p>
+      <?php else if($error == 1): ?>
+          
+      <?php endif; ?>
+      
       <p>
         <label for="Server">Server Date</label>
         <input type="radio" id="Server" name="choice" value="server" onclick="changeSelectionList();">
@@ -55,13 +69,8 @@
       </p>
 
       <p>
-        <label for="weekNum">Week Number:</label>
-        <select id="weekNum" name="weekNum" size="1" disabled>
-          <script>
-             for (i = 1; i <= 24; i++)
-               document.write('<option value="' + i + '">' + i + '</option>');
-          </script>
-        </select>
+        <label for="date">Week Number:</label>
+        <input id="date" name="date" type="date" disabled>
       </p>
       <p><input type="submit" name="submit" value="submit"></p>
     </form>
