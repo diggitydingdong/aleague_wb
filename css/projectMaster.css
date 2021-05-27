@@ -98,6 +98,10 @@ nav ul li a {
     }
 }
 
+#weekForm {
+    text-align: left;
+}
+
 main {
     width: 75%;
     margin-left: 12.5%;

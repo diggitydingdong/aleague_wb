@@ -46,34 +46,35 @@
   </head>
 
   <body>
+    <?php include("nav.php"); ?>
+    <main>
+        <h1>A-League Ladder Assignment</h1>
 
-    <h1>A-League Ladder Assignment</h1>
-
-    <form id="weekForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-      <p>Do you want to use the Server Date or User Input for the current week?</p>
-      
-      <?php if($error == 2):?>
-        <p class="errorMsg">Invalid date - no weeks during this date.</p>
-      <?php elseif($error == 1): ?>
+        <form id="weekForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+          <p>Do you want to use the Server Date or User Input for the current week?</p>
           
-      <?php endif; ?>
-      
-      <p>
-        <label for="Server">Server Date</label>
-        <input type="radio" id="Server" name="choice" value="server" onclick="changeSelectionList();">
-      </p>
+          <?php if($error == 2):?>
+            <p class="errorMsg">Invalid date - no weeks during this date.</p>
+          <?php elseif($error == 1): ?>
+              
+          <?php endif; ?>
+          
+          <p>
+            <label for="Server">Server Date</label>
+            <input type="radio" id="Server" name="choice" value="server" onclick="changeSelectionList();">
+          </p>
 
-      <p>
-        <label for="User">User Input</label>
-        <input type="radio" id="User" name="choice" value="user" onclick="changeSelectionList();">
-      </p>
+          <p>
+            <label for="User">User Input</label>
+            <input type="radio" id="User" name="choice" value="user" onclick="changeSelectionList();">
+          </p>
 
-      <p>
-        <label for="date">Week Number:</label>
-        <input id="date" name="date" type="date" disabled>
-      </p>
-      <p><input type="submit" name="submit" value="submit"></p>
-    </form>
-
+          <p>
+            <label for="date">Week Number:</label>
+            <input id="date" name="date" type="date" disabled>
+          </p>
+          <p><input type="submit" name="submit" value="submit"></p>
+        </form>
+    </main>
   </body>
 </html>
