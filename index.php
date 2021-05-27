@@ -53,8 +53,8 @@
       <p>Do you want to use the Server Date or User Input for the current week?</p>
       
       <?php if($error == 2):?>
-        <p>Invalid date - .</p>
-      <?php else if($error == 1): ?>
+        <p class="errorMsg">Invalid date - no weeks during this date.</p>
+      <?php elseif($error == 1): ?>
           
       <?php endif; ?>
       

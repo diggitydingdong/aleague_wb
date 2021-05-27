@@ -129,6 +129,10 @@ th {
     background-color: #9c9c9c;
 }
 
+.errorMsg {
+    color: red;
+}
+
 @media screen and (max-width: 800px) {
     main {
         width: 100%;
