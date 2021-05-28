@@ -84,22 +84,9 @@ body {
 }
 
 .fixtures_left, .fixtures_right {
-    /* writing-mode: vertical-lr; */
     width: 50%;
     height: 100%;
-    
-    
     display: inline-block;
-    /* position: relative;
-    text-align: center; */
-}
-
-.fixtures_left {
-    /* background-color: red; */
-}
-
-.fixtures_right {
-    /* background-color: blue; */
 }
 
 .fixtures_inner {
@@ -112,10 +99,9 @@ body {
     height: 50%;
     width: auto;
     display: block;
-    
-  margin: auto;
-  position: absolute;
-  top: 0%; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    position: absolute;
+    top: 0%; left: 0; bottom: 0; right: 0;
 }
 
 .f_n {
@@ -161,4 +147,21 @@ body {
 
 .fixtures_selections {
     margin: 20px 0;
+}
+
+.fixtures_radios {
+    background-color: white;
+    border: 6px solid var(--t-c);
+    width: 400px;
+    height: auto;
+    position: relative;
+    margin: 10px auto;
+    padding: 30px;
+    border-radius: 15px;
+    color: var(--th-bg);
+    text-align: left;
+}
+
+.fixtures_radios label {
+    font-weight: bold;
 }

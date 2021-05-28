@@ -88,30 +88,38 @@ if(isset($_POST["submit"])) {
       <main><?php if(mysqli_num_rows($results) != 0): ?>
           <h1>A-League Score Entry</h1>
           
-          <select style="width: 100px;" id="fixtures_week" onchange="updateFixturesWithWeek(this.value, true)">
-              <?php
-              for($i = 1; $i <= 24; $i++) {
-                  $sel = false;
-                  if(isset($_GET["success"])) $sel = ($i == $_GET["success"]); 
-                  else $sel = ($i == $_SESSION["weekID"]); 
-                  echo '<option value="'.$i.'"';
-                  if($sel) echo ' selected';
-                  echo '>WK'.$i.'</option>';
-              }
-              ?>
-              
-          </select>
+          <div class="errorMsg"  id="score_err" <?php if($error != 1) echo "hidden"; ?>>Both scores should be a positive, integer value (or 0).</div>
+          <div class="errorMsg" <?php if($error != 2) echo "hidden"; ?>>A matchID was not chosen.</div>
+          <div class="succMsg"  id="score_succ" <?php if(!isset($_GET["success"])) echo "hidden"; ?>>Successfully updated.</div>
           
           <form onsubmit="return validateScore()" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
               <div class="ui">
-                  <div class="errorMsg"  id="score_err" <?php if($error != 1) echo "hidden"; ?>>Both scores should be a positive, integer value (or 0).</div>
-                  <div class="errorMsg" <?php if($error != 2) echo "hidden"; ?>>A matchID was not chosen.</div>
-                  <div class="succMsg"  id="score_succ" <?php if(!isset($_GET["success"])) echo "hidden"; ?>>Successfully updated.</div>
-                  <input class="inputstohide" type="text" name="score1" id="score1" hidden>
-                  <input class="inputstohide" type="text" name="score2"  id="score2" hidden>
+                  <label for="fixtures_week">Week Number:</label>
+                  <select style="width: 100px;" id="fixtures_week" onchange="updateFixturesWithWeek(this.value, true)">
+                      <?php
+                      for($i = 1; $i <= 24; $i++) {
+                          $sel = false;
+                          if(isset($_GET["success"])) $sel = ($i == $_GET["success"]); 
+                          else $sel = ($i == $_SESSION["weekID"]); 
+                          echo '<option value="'.$i.'"';
+                          if($sel) echo ' selected';
+                          echo '>WK'.$i.'</option>';
+                      }
+                      ?>
+                      
+                  </select>
+                  
+                  <div class="inputstohide"  hidden>
+                      <label for="score1">Home Team Score: </label>
+                      <input type="text" name="score1" id="score1">
+                      <label for="score1">Away Team Score: </label>
+                      <input type="text" name="score2"  id="score2">
+                  </div>
+                  
                   <input type="hidden" name="homeID" id="homeID">
                   <input type="hidden" name="awayID" id="awayID">
                   <input type="hidden" name="weekID" id="weekID">
+                  
                   <button class="inputstohide" type="submit" name="submit" hidden>Submit</button>
               </div>
               
@@ -149,42 +157,6 @@ if(isset($_POST["submit"])) {
               } ?>
                   
               </div></div>
-              
-              <!-- <table class="fixtures_view">
-                  <thead>
-                      <tr>
-                          <th></th>
-                          <th>Week</th>
-                          <th></th>
-                          <th>Home Team</th>
-                          <th></th>
-                          <th>Away Team</th>
-                          <th>Date</th>
-                          <th>Kick-Off</th>
-                          <th>Venue</th>
-                          <th>Score</th>
-                      </tr> 
-                  </thead>
-                  <tbody id="fixtures_body">
-                      
-                      // while($row = $results->fetch_assoc()) { 
-                      //     echo "<tr data-week=\"".$row["weekID"]."\" data-home=\"".$row["homeID"]."\" data-away=\"".$row["awayID"]."\">
-                      //       <td><input type=\"radio\" name=\"matchID\" value=\"".$row["matchID"]."\" onchange=\"enableInputs(".$row["homeID"].", ".$row["awayID"].")\"";
-                      //     if($row["score1"] != NULL || $row["score2"] != NULL) echo " disabled";
-                      //     echo "> </td>
-                      //       <td>".$row["weekID"]."</td>
-                      //       <td><img src=\"images/".$row["homeEmbl"]."\" height=40></td>
-                      //       <td>".$row["homeName"]."</td>
-                      //       <td><img src=\"images/".$row["awayEmbl"]."\" height=40></td>
-                      //       <td>".$row["awayName"]."</td>
-                      //       <td>".$row["matchDate"]."</td>
-                      //       <td>".$row["matchTime"]."</td>
-                      //       <td><a href=\"venue.php?venue=".$row["venueID"]."\">".$row["venueName"]."</a></td>
-                      //       <td>".$row["score1"]."-".$row["score2"]."</td>
-                      //     </tr>";
-                      } 
-                  </tbody>
-              </table> -->
           </form>
       <?php else: ?>
           <p>Error displaying fixtures: No results found.</p>
