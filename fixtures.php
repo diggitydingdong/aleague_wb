@@ -37,7 +37,7 @@
           <div class="fixtures_selections">
               <div class="fixtures_radios">
                   <label for="fr_week">Week Fixture View</label>
-                  <input type="radio" id="fr_week" name="view_type" value="week" onchange="updateView(true, <?php echo $_SESSION["weekID"]; ?>)" selected>
+                  <input type="radio" id="fr_week" name="view_type" value="week" onchange="updateView(true, <?php echo $_SESSION["weekID"]; ?>)" checked>
                   <br>
                   <label for="fr_team">Team Fixture View</label>
                   <input type="radio" id="fr_team" name="view_type" value="team" onchange="updateView(false, <?php echo $_SESSION["weekID"]; ?>)">
