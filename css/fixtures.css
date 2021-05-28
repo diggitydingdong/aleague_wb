@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+:root {
+    --header-bg: #2B2B2B;
+    --bg: #9999BD;
+    --header-text: #ffffff;
+    --th-bg: #6060BD;
+    --t-bg: #ffffff;
+    --t-c: #AAA9C2;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial;
+    font-size: 1em;
+    background-color: var(--bg);
+}
+
+.fixtures_view {
+    text-align: center;
+}
+
+.fixtures_grid_wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+}
+
+@media screen and (max-width: 1600px) {
+    .fixtures_grid_wrapper {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .fixtures_grid_wrapper {
+        grid-template-columns: auto;
+    }
+}
+
+.f_wid {
+    position: absolute;
+    top: -10px;
+    left: 5px;
+    font-weight: bold;
+    z-index: 3;
+    color: white;
+}
+
+.fixtures_item {
+    position: relative;
+    margin: 0;
+    padding: 0px;
+    width: 500px;
+    height: auto;
+    border: 6px solid var(--t-c);
+    background-color: var(--t-bg);
+    text-align: center;
+}
+
+.fixtures_item a {
+    color: white;
+}
+
+.fixtures_top {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding:6px 0;
+    text-align: center;
+    background-color: var(--th-bg);
+    color: #ffffff;
+}
+
+.fixtures_i {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    padding: 0px;
+    text-align: center;
+}
+
+.fixtures_left, .fixtures_right {
+    /* writing-mode: vertical-lr; */
+    width: 50%;
+    height: 100%;
+    
+    
+    display: inline-block;
+    /* position: relative;
+    text-align: center; */
+}
+
+.fixtures_left {
+    /* background-color: red; */
+}
+
+.fixtures_right {
+    /* background-color: blue; */
+}
+
+.fixtures_inner {
+    height: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.fixtures_inner img {
+    height: 50%;
+    width: auto;
+    display: block;
+    
+  margin: auto;
+  position: absolute;
+  top: 0%; left: 0; bottom: 0; right: 0;
+}
+
+.f_n {
+    height: 10%;
+    
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 70%; left: 0; bottom: 0; right: 0;
+}
+
+.f_h {
+    height: 10%;
+    font-weight: bold;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: -70%; left: 0; bottom: 0; right: 0;
+}
+
+.f_s {
+    height: 22px;
+    font-weight: bold;
+    font-size: 22px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: -10%; left: 0; bottom: 0; right: 0;
+}
+
+.fixtures_item_radio {
+    height: 22px;
+    font-weight: bold;
+    font-size: 22px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 10%; left: 10px; bottom: 0;
+    z-index: 5;
+        border: 0px;
+        height: 1em;
+}
+
+.fixtures_selections {
+    margin: 20px 0;
+}

@@ -2,9 +2,13 @@
 
 :root {
     --header-bg: #2B2B2B;
-    --bg: #ffffff;
+    --bg: #9999BD;
     --header-text: #ffffff;
-    
+    --th-bg: #6060BD;
+    --t-bg: #ffffff;
+    --t-c: #AAA9C2;
+    --succ: #17C253;
+    --err: #BA2D2B;
 }
 
 body {
@@ -99,15 +103,14 @@ nav ul li a {
 }
 
 #weekForm {
-    text-align: left;
+    text-align: center;
 }
 
 main {
-    width: 75%;
-    margin-left: 12.5%;
+    width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
 }
 
@@ -124,22 +127,140 @@ main {
     width: 40px;
 }
 
+table {
+    border-radius: 17px 17px 0 0;
+    border: 6px solid var(--t-c);
+}
+
 th, td {
-    padding: 10px;
+    padding: 10px 15px;
     vertical-align: middle;
 }
 
 th {
-    background-color: #9c9c9c;
+    background-color: var(--th-bg);
+    color: white;
+}
+
+td {
+    background-color: var(--t-bg);
 }
 
 .errorMsg {
-    color: red;
+    background-color: var(--err);
+    width: 300px;
+    position: relative;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
 }
 
-@media screen and (max-width: 800px) {
-    main {
-        width: 100%;
-        margin-left: 0;
+.succMsg {
+    background-color: var(--succ);
+    width: 300px;
+    position: relative;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+}
+
+.ui {
+    margin-bottom: 10px; 
+    text-align: center;
+    position: relative;
+}
+
+.fixtures_view {
+    display: inline-block;
+    border-collapse: collapse;
+}
+
+@media screen and (max-width: 1200px) {
+    .hide_1 {
+        display: none;
     }
+}
+
+@media screen and (max-width: 850px) {
+    .hide_2 {
+        display: none;
+    }
+}
+
+#map {
+    height: 500px;
+    width: 90%;
+    max-width: 700px;
+    margin: 10px auto;
+    
+}
+
+.table-tl {
+    border-top-left-radius: 10px;
+}
+
+.table-tr {
+    border-top-right-radius: 10px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+h1 {
+    color: white;
+    background-color: var(--th-bg);
+}
+
+.login_panel {
+    background-color: white;
+    border: 6px solid var(--t-c);
+    width: 400px;
+    height: auto;
+    position: relative;
+    margin: 10px auto;
+    padding: 30px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+}
+
+button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    line-height: 1.5;
+}
+
+select, option, input[type="text"], input[type="password"] {
+    /* width: 150px;
+    border-radius: 5px;
+    padding: 10px; */
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid black;
+        outline: none !important;
+        transition: border .1s ease-in-out, box-shadow .1s ease-in-out;
+        line-height: 1.5;
+}
+input:focus, textarea:focus, select:focus {
+    border: 1px solid #07A0C3;
+    box-shadow: 0 0 0.2em 0.1em #07A0C3;
+}
+
+.login_panel_inner {
+    margin: 0 auto;
+    text-align: left;
+}
+
+.login_panel label, .login_panel p {
+    color: var(--th-bg);
+    font-weight: bold;
+}
+
+.login_button {
+    /* position: absolute; */
+    margin-top: 15px;
+    padding: 5px;
+    display: inline-block;
 }
